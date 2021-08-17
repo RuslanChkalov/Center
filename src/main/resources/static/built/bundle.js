@@ -32803,41 +32803,29 @@ function NavigationMenu(props) {
     className: "nav-item"
   }, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Link"], {
     to: "/"
-  }, activeElement == 1 ? /*#__PURE__*/React.createElement("button", {
-    className: "nav-link active py-3",
-    "data-bs-toggle": "pill"
-  }, /*#__PURE__*/React.createElement("h5", null, "\u0413\u043B\u0430\u0432\u043D\u0430\u044F")) : /*#__PURE__*/React.createElement("button", {
-    className: "nav-link py-3",
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "nav-link py-3" + (activeElement == 1 ? " active" : ""),
     "data-bs-toggle": "pill"
   }, /*#__PURE__*/React.createElement("h5", null, "\u0413\u043B\u0430\u0432\u043D\u0430\u044F")))), /*#__PURE__*/React.createElement("li", {
     className: "nav-item"
   }, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Link"], {
     to: "/doctors"
-  }, activeElement == 2 ? /*#__PURE__*/React.createElement("button", {
-    className: "nav-link active py-3",
-    "data-bs-toggle": "pill"
-  }, /*#__PURE__*/React.createElement("h5", null, "\u0412\u0440\u0430\u0447\u0438")) : /*#__PURE__*/React.createElement("button", {
-    className: "nav-link py-3",
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "nav-link py-3" + (activeElement == 2 ? " active" : ""),
     "data-bs-toggle": "pill"
   }, /*#__PURE__*/React.createElement("h5", null, "\u0412\u0440\u0430\u0447\u0438")))), /*#__PURE__*/React.createElement("li", {
     className: "nav-item"
   }, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Link"], {
     to: "/directions"
-  }, activeElement == 3 ? /*#__PURE__*/React.createElement("button", {
-    className: "nav-link active py-3",
-    "data-bs-toggle": "pill"
-  }, /*#__PURE__*/React.createElement("h5", null, "\u041D\u0430\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0438\u044F")) : /*#__PURE__*/React.createElement("button", {
-    className: "nav-link py-3",
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "nav-link py-3" + (activeElement == 3 ? " active" : ""),
     "data-bs-toggle": "pill"
   }, /*#__PURE__*/React.createElement("h5", null, "\u041D\u0430\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0438\u044F")))), /*#__PURE__*/React.createElement("li", {
     className: "nav-item"
   }, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Link"], {
     to: "/schedule"
-  }, activeElement == 4 ? /*#__PURE__*/React.createElement("button", {
-    className: "nav-link active py-3",
-    "data-bs-toggle": "pill"
-  }, /*#__PURE__*/React.createElement("h5", null, "\u0420\u0430\u0441\u043F\u0438\u0441\u0430\u043D\u0438\u0435")) : /*#__PURE__*/React.createElement("button", {
-    className: "nav-link py-3",
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "nav-link py-3" + (activeElement == 4 ? " active" : ""),
     "data-bs-toggle": "pill"
   }, /*#__PURE__*/React.createElement("h5", null, "\u0420\u0430\u0441\u043F\u0438\u0441\u0430\u043D\u0438\u0435"))))))));
 }
