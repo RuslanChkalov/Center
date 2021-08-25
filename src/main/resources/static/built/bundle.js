@@ -32722,17 +32722,64 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DoctorsPage", function() { return DoctorsPage; });
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _navigationmenu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./navigationmenu */ "./src/main/js/navigationmenu.js");
+/* harmony import */ var _searchandfilter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./searchandfilter */ "./src/main/js/searchandfilter.js");
+
 
 
 
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
+var data = {
+  body: [{
+    doctor_name: "Осипов Анатолий Петрович",
+    direction: "Офтальмология",
+    doctor_photo: "/images/male_doctor_1.png"
+  }, {
+    doctor_name: "Петров Дмитрий Николаевич",
+    direction: "Травмотология",
+    doctor_photo: "/images/male_doctor_2.png"
+  }, {
+    doctor_name: "Юзько Юлия Игоревна",
+    direction: "Хирургия",
+    doctor_photo: "/images/female_doctor_1.png"
+  }, {
+    doctor_name: "Шишкина Мария Ивановна",
+    direction: "Педиатрия",
+    doctor_photo: "/images/female_doctor_2.png"
+  }, {
+    doctor_name: "Иванов Георгий Викторович",
+    direction: "Эндокринология",
+    doctor_photo: "/images/male_doctor_3.png"
+  }, {
+    doctor_name: "Белов Михаил Александрович",
+    direction: "Кардиология",
+    doctor_photo: "/images/male_doctor_4.png"
+  }]
+};
+var directionList = ["Офтальмология", "Травмотология", "Кардиология", "Хирургия", "Педиатрия"];
 function DoctorsPage() {
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(_navigationmenu__WEBPACK_IMPORTED_MODULE_1__["NavigationMenu"], {
     activeElement: 2
   }), /*#__PURE__*/React.createElement("div", {
-    className: "row"
-  }, /*#__PURE__*/React.createElement("h2", null, "Doctors Page")));
+    className: "row with_margin"
+  }, /*#__PURE__*/React.createElement(_searchandfilter__WEBPACK_IMPORTED_MODULE_2__["SearchAndFilterBar"], {
+    directionList: directionList
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "row mt-5"
+  }, data.body.map(function (block) {
+    return /*#__PURE__*/React.createElement("div", {
+      className: "doctor-card"
+    }, /*#__PURE__*/React.createElement("p", {
+      className: "text-center"
+    }, /*#__PURE__*/React.createElement("img", {
+      className: "doctor-image-container mb-2",
+      src: block.doctor_photo
+    }), /*#__PURE__*/React.createElement("div", {
+      className: "h6 text-color-1 text-center"
+    }, block.doctor_name), /*#__PURE__*/React.createElement("div", {
+      className: "h6 text-center"
+    }, block.direction)));
+  }))));
 }
 
 /***/ }),
@@ -32763,12 +32810,14 @@ function MainPage() {
     className: "mt-4"
   }), /*#__PURE__*/React.createElement("img", {
     className: "image-container",
-    src: "/images/mainpage_pic1.png"
+    src: "/images/mainpage_pic1.png",
+    alt: "Медицинский центр"
   }), /*#__PURE__*/React.createElement("div", {
     className: "mt-4"
   }), /*#__PURE__*/React.createElement("img", {
     className: "image-container",
-    src: "/images/mainpage_pic2.png"
+    src: "/images/mainpage_pic2.png",
+    alt: "Схема проезда"
   })));
 }
 
@@ -32892,6 +32941,45 @@ function SchedulePage() {
   }), /*#__PURE__*/React.createElement("div", {
     className: "row"
   }, /*#__PURE__*/React.createElement("h2", null, "Schedule Page")));
+}
+
+/***/ }),
+
+/***/ "./src/main/js/searchandfilter.js":
+/*!****************************************!*\
+  !*** ./src/main/js/searchandfilter.js ***!
+  \****************************************/
+/*! exports provided: SearchAndFilterBar */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SearchAndFilterBar", function() { return SearchAndFilterBar; });
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+function SearchAndFilterBar(props) {
+  var directionList = props.directionList;
+  return /*#__PURE__*/React.createElement("div", {
+    className: "row mt-4"
+  }, /*#__PURE__*/React.createElement("select", {
+    className: "form-select"
+  }, /*#__PURE__*/React.createElement("option", {
+    selected: true
+  }, "\u0412\u0441\u0435 \u043D\u0430\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0438\u044F"), directionList.map(function (direction, index) {
+    return /*#__PURE__*/React.createElement("option", {
+      value: index
+    }, direction);
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "input-group"
+  }, /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    className: "form-control",
+    placeholder: "\u0424\u0430\u043C\u0438\u043B\u0438\u044F, \u0438\u043C\u044F, \u043E\u0442\u0447\u0435\u0441\u0442\u0432\u043E \u0432\u0440\u0430\u0447\u0430"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "input-group-append"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-violet"
+  }, "\u041F\u043E\u0438\u0441\u043A"))));
 }
 
 /***/ })

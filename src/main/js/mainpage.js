@@ -8,10 +8,10 @@ export function MainPage() {
         <div>
             <NavigationMenu activeElement={1} />
             <div className="row">
-                <div className="mt-4"></div>
-                <img className="image-container" src="/images/mainpage_pic1.png"></img>
-                <div className="mt-4"></div>
-                <img className="image-container" src="/images/mainpage_pic2.png"></img>
+                <div className="mt-4"/>
+                <img className="image-container" src="/images/mainpage_pic1.png" alt={"Медицинский центр"}/>
+                <div className="mt-4"/>
+                <img className="image-container" src="/images/mainpage_pic2.png" alt={"Схема проезда"}/>
             </div>
         </div>
     );

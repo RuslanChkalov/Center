@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="ru">
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <title>Medical Center</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <!--    Header-->
+    <div class="row" style="background-color: #e2f0d9; height: 100px">
+        <div class="col"></div>
+        <div class="col-middle">
+            <div class="row">
+                <!--                Лого-->
+                <div class="col-header-logo">
+                    <img src="/images/logo.png" width="100" alt="" height="100">
+                </div>
+                <!--                Расписание-->
+                <div class="col-header-time">
+                    <div class="container-custom">
+                        <div class="row-fluid">
+                            ПН-СБ с 8:00 до 20:00
+                            <br>
+                            ВС с 10:00 до 18:00
+                        </div>
+                    </div>
+                </div>
+                <!--                Адрес-->
+                <div class="col-header-address">
+                    <div class="container-custom">
+                        <div class="row-fluid">
+                            <img src="/images/location.png" width="23" alt="" height="23">
+                            г. Владимир, ул. Пушкина, д. 5г
+                            <br>
+                            <div class="mt-1">
+                                <img src="/images/phone.png" width="23" alt="" height="23">
+                                8 (4922) 66-66-88
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+    <!--    Main area-->
+    <div class="row" style="min-height: calc(100vh - 150px)">
+        <div class="col">
+            <div class="row custom"></div>
+            <div class="row"></div>
+        </div>
+        <div class="col-middle" style="border-left: 1px solid #f2f2f2; border-right: 1px solid #f2f2f2">
+            <div class="row custom"></div>
+            <div class="row with_margin">
+                <div class="row mt-4">
+
+                    <select class="form-select">
+                        <option selected>Все направления</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Фамилия, имя, отчество врача">
+                        <div class="input-group-append">
+                            <button class="btn btn-violet">Поиск</button>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+                <div class="row mt-5">
+                    <div class="doctor-card">
+                        <p class="text-center">
+                            <img class="doctor-image-container" src="/images/male_doctor_1.png">
+                            <div class="h6 text-color-1 text-center"> Осипов Анатолий Петрович</div>
+                        <div class="h6 text-center">Офтальмолог</div>
+                        </p>
+                    </div>
+                    <div class="doctor-card">
+                        <p class="text-center">
+                            <img class="doctor-image-container" src="/images/male_doctor_1.png">
+                        <div class="h6 text-color-1 text-center"> Осипов Анатолий Петрович</div>
+                        <div class="h6 text-center">Офтальмолог</div>
+                        </p>
+                    </div><div class="doctor-card">
+                    <p class="text-center">
+                        <img class="doctor-image-container" src="/images/male_doctor_1.png">
+                    <div class="h6 text-color-1 text-center"> Осипов Анатолий Петрович</div>
+                    <div class="h6 text-center">Офтальмолог</div>
+                    </p>
+                </div><div class="doctor-card">
+                    <p class="text-center">
+                        <img class="doctor-image-container" src="/images/male_doctor_1.png">
+                    <div class="h6 text-color-1 text-center"> Осипов Анатолий Петрович</div>
+                    <div class="h6 text-center">Офтальмолог</div>
+                    </p>
+                </div><div class="doctor-card">
+                    <p class="text-center">
+                        <img class="doctor-image-container" src="/images/male_doctor_1.png">
+                    <div class="h6 text-color-1 text-center"> Осипов Анатолий Петрович</div>
+                    <div class="h6 text-center">Офтальмолог</div>
+                    </p>
+                </div><div class="doctor-card">
+                    <p class="text-center">
+                        <img class="doctor-image-container" src="/images/male_doctor_1.png">
+                    <div class="h6 text-color-1 text-center"> Осипов Анатолий Петрович</div>
+                    <div class="h6 text-center">Офтальмолог</div>
+                    </p>
+                </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="row custom"></div>
+            <div class="row"></div>
+        </div>
+    </div>
+    <!--    Footer-->
+    <div class="row" style="height: 50px; background-color: #e2f0d9">
+        <div class="col"></div>
+        <div class="col-middle">
+            <div class="mt-2"></div>
+            © 2021 Учебный проект: «Медицинский центр» by Ruslan Chkalov
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+
+
+<script src="built/bundle.js"></script>
+</body>
+</html>
