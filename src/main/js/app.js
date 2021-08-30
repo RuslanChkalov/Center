@@ -1,7 +1,6 @@
 'use strict';
-
-const React = require('react'); // <1>
-const ReactDOM = require('react-dom'); // <2>
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 import App from './reactrouter';
 

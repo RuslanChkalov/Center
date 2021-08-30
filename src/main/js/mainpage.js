@@ -1,7 +1,6 @@
 import {Link} from "react-router-dom";
 import {NavigationMenu} from "./navigationmenu";
-
-const React = require('react');
+import React from 'react';
 
 export function MainPage() {
     return (

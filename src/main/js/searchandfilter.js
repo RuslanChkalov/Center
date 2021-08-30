@@ -1,7 +1,7 @@
-const React = require('react');
+import React from 'react';
 
 export function SearchAndFilterBar(props) {
-    const directionList = props.directionList;
+    const directionList = ["Офтальмология", "Травмотология", "Кардиология", "Хирургия", "Педиатрия"];
     return (
         <div className="row mt-4">
             <select className="form-select">

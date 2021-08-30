@@ -1,6 +1,5 @@
 import {Link} from "react-router-dom";
-
-const React = require('react');
+import React from 'react';
 
 export function NavigationMenu(props) {
     const activeElement = props.activeElement;

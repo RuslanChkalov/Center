@@ -1,4 +1,4 @@
-const React = require('react');
+import React from 'react';
 import {MainPage} from './mainpage';
 import {DoctorsPage} from './doctorspage';
 import {DirectionsPage} from './directionspage';

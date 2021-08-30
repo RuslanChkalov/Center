@@ -120,3 +120,11 @@ a {
 .text-color-1 {
     color: #2e3192;
 }
+.direction-image-container {
+    height: 100px;
+    padding: 0;
+}
+.direction-card{
+    width: 330px;
+    height: 270px;
+}
