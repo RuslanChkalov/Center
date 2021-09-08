@@ -1,8 +1,8 @@
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import React from 'react';
 
-export function NavigationMenu(props) {
-    const activeElement = props.activeElement;
+export function NavigationMenu() {
+    const location = useLocation();
     return (
         <div className="row custom">
             <div className="container-custom">
@@ -10,25 +10,25 @@ export function NavigationMenu(props) {
                     <ul className="nav nav-pills nav-fill">
                         <li className="nav-item">
                             <Link to="/">
-                                <button className={"nav-link py-3" + (activeElement == 1 ? " active" : "")}
+                                <button className={"nav-link py-3" + (location.pathname == "/" ? " active" : "")}
                                         data-bs-toggle="pill"><h5>Главная</h5></button>
                             </Link>
                         </li>
                         <li className="nav-item">
                             <Link to="/doctors">
-                                <button className={"nav-link py-3" + (activeElement == 2 ? " active" : "")}
+                                <button className={"nav-link py-3" + (location.pathname == "/doctors" ? " active" : "")}
                                         data-bs-toggle="pill"><h5>Врачи</h5></button>
                             </Link>
                         </li>
                         <li className="nav-item">
                             <Link to="/directions">
-                                <button className={"nav-link py-3" + (activeElement == 3 ? " active" : "")}
+                                <button className={"nav-link py-3" + (location.pathname == "/directions" ? " active" : "")}
                                         data-bs-toggle="pill"><h5>Направления</h5></button>
                             </Link>
                         </li>
                         <li className="nav-item">
                             <Link to="/schedule">
-                                <button className={"nav-link py-3" + (activeElement == 4 ? " active" : "")}
+                                <button className={"nav-link py-3" + (location.pathname == "/schedule" ? " active" : "")}
                                         data-bs-toggle="pill"><h5>Расписание</h5></button>
                             </Link>
                         </li>

@@ -34,15 +34,6 @@ CREATE TABLE specialities_to_directions
     FOREIGN KEY (medical_direction_id) REFERENCES medical_directions (id)
 );
 
-CREATE TABLE registration_requests
-(
-    id           INT GENERATED ALWAYS AS IDENTITY,
-    patient_name VARCHAR(50),
-    phone        VARCHAR(20),
-    email        VARCHAR(50),
-    PRIMARY KEY (id)
-);
-
 CREATE TABLE schedule
 (
     appointment_id  INT GENERATED ALWAYS AS IDENTITY,
@@ -50,6 +41,15 @@ CREATE TABLE schedule
     interval_number INT,
     doctor          INT,
     PRIMARY KEY (appointment_id),
-    FOREIGN KEY (doctor) REFERENCES doctors (id),
-    FOREIGN KEY (appointment_id) REFERENCES registration_requests (id)
+    FOREIGN KEY (doctor) REFERENCES doctors (id)
+);
+
+CREATE TABLE registration_requests
+(
+    id           INT GENERATED ALWAYS AS IDENTITY,
+    patient_name VARCHAR(50),
+    phone        VARCHAR(20),
+    email        VARCHAR(50),
+    PRIMARY KEY (id),
+    FOREIGN KEY (id) REFERENCES schedule (appointment_id)
 );

@@ -32695,11 +32695,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DirectionsCard", function() { return DirectionsCard; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
 
 function DirectionsCard(props) {
   var block = props.block;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "direction-card"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: {
+      pathname: '/directions',
+      search: "?directionId=" + block.id
+    }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "text-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -32709,7 +32716,7 @@ function DirectionsCard(props) {
     className: "h4 text-color-1 text-center"
   }, block.direction_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "h6 text-center"
-  }, block.description)));
+  }, block.description))));
 }
 
 /***/ }),
@@ -32724,24 +32731,83 @@ function DirectionsCard(props) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DirectionsPage", function() { return DirectionsPage; });
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _navigationmenu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./navigationmenu */ "./src/main/js/navigationmenu.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _infinitescroll__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./infinitescroll */ "./src/main/js/infinitescroll.js");
+/* harmony import */ var _navigationmenu__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./navigationmenu */ "./src/main/js/navigationmenu.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _infinitescroll__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./infinitescroll */ "./src/main/js/infinitescroll.js");
+/* harmony import */ var _directionscard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./directionscard */ "./src/main/js/directionscard.js");
 
 
 
 
 function DirectionsPage() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_navigationmenu__WEBPACK_IMPORTED_MODULE_1__["NavigationMenu"], {
-    activeElement: 3
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_navigationmenu__WEBPACK_IMPORTED_MODULE_0__["NavigationMenu"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "row with_margin"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_infinitescroll__WEBPACK_IMPORTED_MODULE_3__["InfiniteScroll"], {
-    activeElement: 3
-  })));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "scroll-full"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_infinitescroll__WEBPACK_IMPORTED_MODULE_2__["InfiniteScroll"], {
+    getMoreData: getMoreData
+  }))));
 }
+
+function getMoreData(page) {
+  var pageToRequest = page; //For the server side
+
+  return [/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, data.body.map(function (block) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_directionscard__WEBPACK_IMPORTED_MODULE_3__["DirectionsCard"], {
+      block: block
+    });
+  }))];
+}
+
+var data = {
+  body: [{
+    id: 1,
+    direction_name: "Аллергология",
+    description: "Диагностика и лечение аллергии и аутоимунных заболеваний",
+    image: "/images/directions/allergologiya.png"
+  }, {
+    id: 2,
+    direction_name: "Анестезиология",
+    description: "Местная, спинальная, эпидуральная анестезия и наркоз",
+    image: "/images/directions/anesteziologiya.png"
+  }, {
+    id: 3,
+    direction_name: "Гастроэнтерология",
+    description: "Диагностика и лечение заболеваний ЖКТ",
+    image: "/images/directions/gastroenterologiya.png"
+  }, {
+    id: 4,
+    direction_name: "Гинекология",
+    description: "Диагностика и лечение заболеваний женской репродуктивной системы",
+    image: "/images/directions/ginekologiya.png"
+  }, {
+    id: 5,
+    direction_name: "Кардиология",
+    description: "Диагностика и лечение заболеваний сердца",
+    image: "/images/directions/kardiologiya.png"
+  }, {
+    id: 6,
+    direction_name: "Диагностика",
+    description: "МСКТ, УЗИ, рентген",
+    image: "/images/directions/diagnostika.png"
+  }, {
+    id: 7,
+    direction_name: "Маммология",
+    description: "Диагностика и лечение заболеваний молочной железы",
+    image: "/images/directions/mammologiya.png"
+  }, {
+    id: 8,
+    direction_name: "Неврология и нейрофизиология",
+    description: "Диагностика и лечение заболеваний нервной системы",
+    image: "/images/directions/nevrologiya.png"
+  }, {
+    id: 9,
+    direction_name: "Нейрохирургия",
+    description: "Вопросы оперативного лечения заболеваний и травм нервной системы",
+    image: "/images/directions/nejrohirurgiya.png"
+  }]
+};
 
 /***/ }),
 
@@ -32757,11 +32823,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DoctorsCard", function() { return DoctorsCard; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
 
 function DoctorsCard(props) {
   var block = props.block;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "doctor-card"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: {
+      pathname: '/doctors',
+      search: "?doctorId=" + block.id
+    }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "text-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -32770,8 +32843,8 @@ function DoctorsCard(props) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "h6 text-color-1 text-center"
   }, block.doctor_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "h6 text-center"
-  }, block.direction)));
+    className: "h6 text-color-2 text-center"
+  }, block.direction))));
 }
 
 /***/ }),
@@ -32786,26 +32859,70 @@ function DoctorsCard(props) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DoctorsPage", function() { return DoctorsPage; });
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _navigationmenu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./navigationmenu */ "./src/main/js/navigationmenu.js");
-/* harmony import */ var _searchandfilter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./searchandfilter */ "./src/main/js/searchandfilter.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _infinitescroll__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./infinitescroll */ "./src/main/js/infinitescroll.js");
+/* harmony import */ var _navigationmenu__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./navigationmenu */ "./src/main/js/navigationmenu.js");
+/* harmony import */ var _searchandfilter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./searchandfilter */ "./src/main/js/searchandfilter.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _infinitescroll__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./infinitescroll */ "./src/main/js/infinitescroll.js");
+/* harmony import */ var _doctorscard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./doctorscard */ "./src/main/js/doctorscard.js");
 
 
 
 
 
 function DoctorsPage() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_navigationmenu__WEBPACK_IMPORTED_MODULE_1__["NavigationMenu"], {
-    activeElement: 2
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_navigationmenu__WEBPACK_IMPORTED_MODULE_0__["NavigationMenu"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
     className: "row with_margin"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_searchandfilter__WEBPACK_IMPORTED_MODULE_2__["SearchAndFilterBar"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_infinitescroll__WEBPACK_IMPORTED_MODULE_4__["InfiniteScroll"], {
-    activeElement: 2
-  })));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_searchandfilter__WEBPACK_IMPORTED_MODULE_1__["SearchAndFilterBar"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+    className: "scroll-small"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_infinitescroll__WEBPACK_IMPORTED_MODULE_3__["InfiniteScroll"], {
+    getMoreData: getMoreData
+  }))));
 }
+
+function getMoreData(page) {
+  var pageToRequest = page; //For the server side
+
+  return [/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, data.body.map(function (block) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_doctorscard__WEBPACK_IMPORTED_MODULE_4__["DoctorsCard"], {
+      block: block
+    });
+  }))];
+}
+
+var data = {
+  body: [{
+    id: 1,
+    doctor_name: "Осипов Анатолий Петрович",
+    direction: "Офтальмология",
+    doctor_photo: "/images/doctors/male_doctor_1.png"
+  }, {
+    id: 2,
+    doctor_name: "Петров Дмитрий Николаевич",
+    direction: "Травмотология",
+    doctor_photo: "/images/doctors/male_doctor_2.png"
+  }, {
+    id: 3,
+    doctor_name: "Юзько Юлия Игоревна",
+    direction: "Хирургия",
+    doctor_photo: "/images/doctors/female_doctor_1.png"
+  }, {
+    id: 4,
+    doctor_name: "Шишкина Мария Ивановна",
+    direction: "Педиатрия",
+    doctor_photo: "/images/doctors/female_doctor_2.png"
+  }, {
+    id: 5,
+    doctor_name: "Иванов Георгий Викторович",
+    direction: "Эндокринология",
+    doctor_photo: "/images/doctors/male_doctor_3.png"
+  }, {
+    id: 6,
+    doctor_name: "Белов Михаил Александрович",
+    direction: "Кардиология",
+    doctor_photo: "/images/doctors/male_doctor_4.png"
+  }]
+};
 
 /***/ }),
 
@@ -32821,8 +32938,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InfiniteScroll", function() { return InfiniteScroll; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _doctorscard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./doctorscard */ "./src/main/js/doctorscard.js");
-/* harmony import */ var _directionscard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./directionscard */ "./src/main/js/directionscard.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -32836,106 +32951,16 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
-
-
-var directionDictionary = {
-  body: [{
-    direction_name: "Аллергология",
-    description: "Диагностика и лечение аллергии и аутоимунных заболеваний",
-    image: "/images/directions/allergologiya.png"
-  }, {
-    direction_name: "Анестезиология",
-    description: "Местная, спинальная, эпидуральная анестезия и наркоз",
-    image: "/images/directions/anesteziologiya.png"
-  }, {
-    direction_name: "Гастроэнтерология",
-    description: "Диагностика и лечение заболеваний ЖКТ",
-    image: "/images/directions/gastroenterologiya.png"
-  }, {
-    direction_name: "Гинекология",
-    description: "Диагностика и лечение заболеваний женской репродуктивной системы",
-    image: "/images/directions/ginekologiya.png"
-  }, {
-    direction_name: "Кардиология",
-    description: "Диагностика и лечение заболеваний сердца",
-    image: "/images/directions/kardiologiya.png"
-  }, {
-    direction_name: "Диагностика",
-    description: "МСКТ, УЗИ, рентген",
-    image: "/images/directions/diagnostika.png"
-  }, {
-    direction_name: "Маммология",
-    description: "Диагностика и лечение заболеваний молочной железы",
-    image: "/images/directions/mammologiya.png"
-  }, {
-    direction_name: "Неврология и нейрофизиология",
-    description: "Диагностика и лечение заболеваний нервной системы",
-    image: "/images/directions/nevrologiya.png"
-  }, {
-    direction_name: "Нейрохирургия",
-    description: "Вопросы оперативного лечения заболеваний и травм нервной системы",
-    image: "/images/directions/nejrohirurgiya.png"
-  }]
-};
-var data = {
-  body: [{
-    doctor_name: "Осипов Анатолий Петрович",
-    direction: "Офтальмология",
-    doctor_photo: "/images/doctors/male_doctor_1.png"
-  }, {
-    doctor_name: "Петров Дмитрий Николаевич",
-    direction: "Травмотология",
-    doctor_photo: "/images/doctors/male_doctor_2.png"
-  }, {
-    doctor_name: "Юзько Юлия Игоревна",
-    direction: "Хирургия",
-    doctor_photo: "/images/doctors/female_doctor_1.png"
-  }, {
-    doctor_name: "Шишкина Мария Ивановна",
-    direction: "Педиатрия",
-    doctor_photo: "/images/doctors/female_doctor_2.png"
-  }, {
-    doctor_name: "Иванов Георгий Викторович",
-    direction: "Эндокринология",
-    doctor_photo: "/images/doctors/male_doctor_3.png"
-  }, {
-    doctor_name: "Белов Михаил Александрович",
-    direction: "Кардиология",
-    doctor_photo: "/images/doctors/male_doctor_4.png"
-  }]
-};
 function InfiniteScroll(props) {
-  var activeElement = props.activeElement;
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(1),
       _useState2 = _slicedToArray(_useState, 2),
-      postList = _useState2[0],
-      setPostList = _useState2[1];
+      page = _useState2[0],
+      setPage = _useState2[1];
 
-  switch (activeElement) {
-    case 2:
-      var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(data.body);
-
-      var _useState4 = _slicedToArray(_useState3, 2);
-
-      postList = _useState4[0];
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.getMoreData(page)),
+      _useState4 = _slicedToArray(_useState3, 2),
+      postList = _useState4[0],
       setPostList = _useState4[1];
-      break;
-
-    case 3:
-      var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(directionDictionary.body);
-
-      var _useState6 = _slicedToArray(_useState5, 2);
-
-      postList = _useState6[0];
-      setPostList = _useState6[1];
-      break;
-  }
-
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(1),
-      _useState8 = _slicedToArray(_useState7, 2),
-      page = _useState8[0],
-      setPage = _useState8[1];
 
   var loader = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(null);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
@@ -32954,15 +32979,7 @@ function InfiniteScroll(props) {
   }, []);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     // On scroll data update
-    switch (activeElement) {
-      case 2:
-        setPostList(postList.concat(data.body));
-        break;
-
-      case 3:
-        setPostList(postList.concat(directionDictionary.body));
-        break;
-    }
+    setPostList(postList.concat(props.getMoreData(page)));
   }, [page]); // Page counter
 
   var handleObserver = function handleObserver(entities) {
@@ -32977,25 +32994,7 @@ function InfiniteScroll(props) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row mt-5"
-  }, function () {
-    switch (activeElement) {
-      case 2:
-        return postList.map(function (block) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_doctorscard__WEBPACK_IMPORTED_MODULE_1__["DoctorsCard"], {
-            block: block
-          });
-        });
-        break;
-
-      case 3:
-        return postList.map(function (block) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_directionscard__WEBPACK_IMPORTED_MODULE_2__["DirectionsCard"], {
-            block: block
-          });
-        });
-        break;
-    }
-  }(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, postList, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "loading",
     ref: loader
   }));
@@ -33021,9 +33020,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function MainPage() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_navigationmenu__WEBPACK_IMPORTED_MODULE_1__["NavigationMenu"], {
-    activeElement: 1
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_navigationmenu__WEBPACK_IMPORTED_MODULE_1__["NavigationMenu"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
     className: "row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
     className: "mt-4"
@@ -33057,8 +33054,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 
 
-function NavigationMenu(props) {
-  var activeElement = props.activeElement;
+function NavigationMenu() {
+  var location = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["useLocation"])();
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "row custom"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -33072,28 +33069,28 @@ function NavigationMenu(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Link"], {
     to: "/"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-    className: "nav-link py-3" + (activeElement == 1 ? " active" : ""),
+    className: "nav-link py-3" + (location.pathname == "/" ? " active" : ""),
     "data-bs-toggle": "pill"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h5", null, "\u0413\u043B\u0430\u0432\u043D\u0430\u044F")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
     className: "nav-item"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Link"], {
     to: "/doctors"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-    className: "nav-link py-3" + (activeElement == 2 ? " active" : ""),
+    className: "nav-link py-3" + (location.pathname == "/doctors" ? " active" : ""),
     "data-bs-toggle": "pill"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h5", null, "\u0412\u0440\u0430\u0447\u0438")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
     className: "nav-item"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Link"], {
     to: "/directions"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-    className: "nav-link py-3" + (activeElement == 3 ? " active" : ""),
+    className: "nav-link py-3" + (location.pathname == "/directions" ? " active" : ""),
     "data-bs-toggle": "pill"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h5", null, "\u041D\u0430\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0438\u044F")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
     className: "nav-item"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Link"], {
     to: "/schedule"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-    className: "nav-link py-3" + (activeElement == 4 ? " active" : ""),
+    className: "nav-link py-3" + (location.pathname == "/schedule" ? " active" : ""),
     "data-bs-toggle": "pill"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h5", null, "\u0420\u0430\u0441\u043F\u0438\u0441\u0430\u043D\u0438\u0435"))))))));
 }
@@ -33148,19 +33145,15 @@ function MainRouter() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SchedulePage", function() { return SchedulePage; });
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _navigationmenu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./navigationmenu */ "./src/main/js/navigationmenu.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-
+/* harmony import */ var _navigationmenu__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./navigationmenu */ "./src/main/js/navigationmenu.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 
 
 function SchedulePage() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_navigationmenu__WEBPACK_IMPORTED_MODULE_1__["NavigationMenu"], {
-    activeElement: 4
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_navigationmenu__WEBPACK_IMPORTED_MODULE_0__["NavigationMenu"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("h2", null, "Schedule Page")));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", null, "Schedule Page")));
 }
 
 /***/ }),
@@ -33181,9 +33174,9 @@ __webpack_require__.r(__webpack_exports__);
 function SearchAndFilterBar(props) {
   var directionList = ["Офтальмология", "Травмотология", "Кардиология", "Хирургия", "Педиатрия"];
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row mt-4"
+    className: "row searchandfilter"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
-    className: "form-select"
+    className: "form-select mt-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
     selected: true
   }, "\u0412\u0441\u0435 \u043D\u0430\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0438\u044F"), directionList.map(function (direction, index) {
@@ -33191,7 +33184,7 @@ function SearchAndFilterBar(props) {
       value: index
     }, direction);
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "input-group"
+    className: "input-group mt-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
     className: "form-control",

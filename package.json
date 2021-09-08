@@ -6,6 +6,7 @@
   "license": "Apache-2.0",
   "homepage": "https://github.com/RuslanChkalov/MedicalCenter",
   "dependencies": {
+    "react-addons-create-fragment": "latest",
     "react-router-dom": "latest",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
