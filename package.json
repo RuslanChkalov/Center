@@ -6,7 +6,6 @@
   "license": "Apache-2.0",
   "homepage": "https://github.com/RuslanChkalov/MedicalCenter",
   "dependencies": {
-    "react-addons-create-fragment": "latest",
     "react-router-dom": "latest",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
@@ -16,6 +15,7 @@
     "watch": "webpack --watch -d --output ./target/classes/static/built/bundle.js"
   },
   "devDependencies": {
+    "@babel/plugin-transform-runtime": "latest",
     "@babel/core": "^7.1.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",

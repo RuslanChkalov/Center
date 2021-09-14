@@ -1,4 +1,4 @@
-package com.medicalcenter;
+package com.medicalcenter.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -6,11 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class MainController {
-
-    @RequestMapping(value = "/test")
-    public String test() {
-        return "test";
-    }
 
     @RequestMapping(value = "/*")
     public String main() {

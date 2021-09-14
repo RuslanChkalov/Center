@@ -8,15 +8,15 @@ export function DirectionsCard(props) {
         <div className="direction-card">
             <Link
                 to={{
-                    pathname: '/directions',
+                    pathname: '/doctors',
                     search: "?directionId=" + block.id
                 }}
             >
-            <p className="text-center">
+            <div className="text-center">
                 <img className="direction-image-container mb-2" src={block.image}/>
                 <div className="h4 text-color-1 text-center">{block.direction_name}</div>
                 <div className="h6 text-color-2 text-center">{block.description}</div>
-            </p>
+            </div>
             </Link>
         </div>
     );

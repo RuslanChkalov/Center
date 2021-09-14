@@ -1,0 +1,29 @@
+package com.medicalcenter.dto;
+
+import com.medicalcenter.entities.Doctor;
+
+
+public class DoctorDTO {
+    private long doctorId;
+    private String doctorName;
+    private String doctorPhotoPath;
+    private String doctorEducation;
+    private String doctorSpeciality;
+
+    public DoctorDTO(Doctor entity) {
+        this.doctorId = entity.getId();
+        this.doctorName = entity.getName();
+        this.doctorPhotoPath = entity.getPhoto_path();
+        this.doctorEducation = entity.getEducation();
+        this.doctorSpeciality = entity.getSpeciality().getName();
+    }
+
+    public String commonJSON()
+    {
+        String json="{\"id\":"+doctorId+", \"doctor_name\":\""
+                +doctorName+"\", \"direction\":\""
+                +doctorSpeciality+"\", \"doctor_photo\":\""
+                +doctorPhotoPath+"\"}";
+        return json;
+    }
+}
