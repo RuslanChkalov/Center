@@ -10,6 +10,9 @@ public class DoctorDTO {
     private String doctorEducation;
     private String doctorSpeciality;
 
+    public DoctorDTO() {
+    }
+
     public DoctorDTO(Doctor entity) {
         this.doctorId = entity.getId();
         this.doctorName = entity.getName();
@@ -18,12 +21,23 @@ public class DoctorDTO {
         this.doctorSpeciality = entity.getSpeciality().getName();
     }
 
-    public String commonJSON()
-    {
-        String json="{\"id\":"+doctorId+", \"doctor_name\":\""
-                +doctorName+"\", \"direction\":\""
-                +doctorSpeciality+"\", \"doctor_photo\":\""
-                +doctorPhotoPath+"\"}";
-        return json;
+    public long getDoctorId() {
+        return doctorId;
+    }
+
+    public String getDoctorName() {
+        return doctorName;
+    }
+
+    public String getDoctorPhotoPath() {
+        return doctorPhotoPath;
+    }
+
+    public String getDoctorEducation() {
+        return doctorEducation;
+    }
+
+    public String getDoctorSpeciality() {
+        return doctorSpeciality;
     }
 }

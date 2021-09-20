@@ -21,8 +21,8 @@ export function DoctorsPage() {
             <NavigationMenu/>
             <div className="row with_margin">
                 <SearchAndFilterBar/>
-                <div className="scroll-small">
-                    <InfiniteScroll getMoreData={getMoreData}/>
+                <div className="scroll-small" id="scroll_small">
+                    <InfiniteScroll scrollerId={"scroll_small"} getMoreData={getMoreData}/>
                 </div>
             </div>
         </div>

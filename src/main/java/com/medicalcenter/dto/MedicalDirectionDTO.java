@@ -8,6 +8,9 @@ public class MedicalDirectionDTO {
     private String medicalDirectionImagePath;
     private String medicalDirectionDescription;
 
+    public MedicalDirectionDTO() {
+    }
+
     public MedicalDirectionDTO(MedicalDirection entity) {
         this.medicalDirectionId = entity.getId();
         this.medicalDirectionName = entity.getName();
@@ -15,19 +18,19 @@ public class MedicalDirectionDTO {
         this.medicalDirectionDescription = entity.getDescription();
     }
 
-    public String comboboxJSON()
-    {
-        String json="{\"id\":"+medicalDirectionId+", \"name\":\""
-                +medicalDirectionName+"\"}";
-        return json;
+    public long getMedicalDirectionId() {
+        return medicalDirectionId;
     }
 
-    public String directionJSON()
-    {
-        String json="{\"id\":"+medicalDirectionId+", \"direction_name\":\""
-                +medicalDirectionName+"\", \"description\":\""
-                +medicalDirectionDescription+"\", \"image\":\""
-                +medicalDirectionImagePath+"\"}";
-        return json;
+    public String getMedicalDirectionName() {
+        return medicalDirectionName;
+    }
+
+    public String getMedicalDirectionImagePath() {
+        return medicalDirectionImagePath;
+    }
+
+    public String getMedicalDirectionDescription() {
+        return medicalDirectionDescription;
     }
 }

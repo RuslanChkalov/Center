@@ -9,13 +9,13 @@ export function DirectionsCard(props) {
             <Link
                 to={{
                     pathname: '/doctors',
-                    search: "?directionId=" + block.id
+                    search: "?directionId=" + block.medicalDirectionId
                 }}
             >
             <div className="text-center">
-                <img className="direction-image-container mb-2" src={block.image}/>
-                <div className="h4 text-color-1 text-center">{block.direction_name}</div>
-                <div className="h6 text-color-2 text-center">{block.description}</div>
+                <img className="direction-image-container mb-2" src={block.medicalDirectionImagePath}/>
+                <div className="h4 text-color-1 text-center">{block.medicalDirectionName}</div>
+                <div className="h6 text-color-2 text-center">{block.medicalDirectionDescription}</div>
             </div>
             </Link>
         </div>

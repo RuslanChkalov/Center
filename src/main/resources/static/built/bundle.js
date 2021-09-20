@@ -33655,18 +33655,18 @@ function DirectionsCard(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: {
       pathname: '/doctors',
-      search: "?directionId=" + block.id
+      search: "?directionId=" + block.medicalDirectionId
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     className: "direction-image-container mb-2",
-    src: block.image
+    src: block.medicalDirectionImagePath
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "h4 text-color-1 text-center"
-  }, block.direction_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, block.medicalDirectionName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "h6 text-color-2 text-center"
-  }, block.description))));
+  }, block.medicalDirectionDescription))));
 }
 
 /***/ }),
@@ -33731,12 +33731,12 @@ function DoctorsCard(props) {
     className: "text-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     className: "doctor-image-container mb-2",
-    src: block.doctor_photo
+    src: block.doctorPhotoPath
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "h6 text-color-1 text-center"
-  }, block.doctor_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, block.doctorName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "h6 text-color-2 text-center"
-  }, block.direction)));
+  }, block.doctorSpeciality)));
 }
 
 /***/ }),
@@ -33774,8 +33774,10 @@ function DoctorsPage() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_navigationmenu__WEBPACK_IMPORTED_MODULE_0__["NavigationMenu"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
     className: "row with_margin"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_searchandfilter__WEBPACK_IMPORTED_MODULE_1__["SearchAndFilterBar"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
-    className: "scroll-small"
+    className: "scroll-small",
+    id: "scroll_small"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_infinitescroll__WEBPACK_IMPORTED_MODULE_3__["InfiniteScroll"], {
+    scrollerId: "scroll_small",
     getMoreData: getMoreData
   }))));
 }
@@ -33807,18 +33809,33 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function InfiniteScroll(props) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])([null]),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])([]),
       _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_useState, 2),
       postList = _useState2[0],
-      setPostList = _useState2[1];
+      setPostList = _useState2[1]; //concat невозможен с null
+
 
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(0),
       _useState4 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_useState3, 2),
       page = _useState4[0],
       setPage = _useState4[1];
 
-  var loader = Object(react__WEBPACK_IMPORTED_MODULE_3__["useRef"])(null);
   var location = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["useLocation"])();
+  var searchParams = new URLSearchParams(location.search);
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(false),
+      _useState6 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_useState5, 2),
+      dataEndReached = _useState6[0],
+      setDataEndReached = _useState6[1]; //Достигнут конец списка
+
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(false),
+      _useState8 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_useState7, 2),
+      loadingEffectCancelled = _useState8[0],
+      setLoadingEffectCancelled = _useState8[1]; //Запрет отработки эффекта при смене страницы
+
+
+  var loader = Object(react__WEBPACK_IMPORTED_MODULE_3__["useRef"])(null);
 
   function fetchData(_x) {
     return _fetchData.apply(this, arguments);
@@ -33826,55 +33843,88 @@ function InfiniteScroll(props) {
 
   function _fetchData() {
     _fetchData = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default.a.mark(function _callee(loadedPage) {
-      var response, json;
+      var response, json, bufferList;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              if (!(page == 0)) {
-                _context.next = 2;
-                break;
-              }
+              _context.prev = 0;
+              searchParams.set("page", loadedPage);
+              _context.next = 4;
+              return fetch('/requests' + location.pathname + "?" + searchParams.toString());
 
-              return _context.abrupt("return");
-
-            case 2:
-              _context.prev = 2;
-              _context.next = 5;
-              return fetch('/requests' + location.pathname + (location.search == "" ? "?page=" : location.search + "&page=") + loadedPage);
-
-            case 5:
+            case 4:
               response = _context.sent;
-              _context.next = 8;
+              _context.next = 7;
               return response.json();
 
-            case 8:
+            case 7:
               json = _context.sent;
-              setPostList(props.getMoreData(json));
-              _context.next = 15;
+              bufferList = props.getMoreData(json);
+
+              if (bufferList[0].props.children.length == 0) {
+                //сервер прислал пустой json => данные закончились
+                setDataEndReached(true);
+              }
+
+              if (loadedPage == 0) {
+                setPostList(bufferList);
+              } else {
+                setPostList(postList.concat(bufferList));
+              }
+
+              document.getElementById("spinner").style.visibility = "hidden";
+              _context.next = 17;
               break;
 
-            case 12:
-              _context.prev = 12;
-              _context.t0 = _context["catch"](2);
+            case 14:
+              _context.prev = 14;
+              _context.t0 = _context["catch"](0);
               console.error(_context.t0);
 
-            case 15:
+            case 17:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 12]]);
+      }, _callee, null, [[0, 14]]);
     }));
     return _fetchData.apply(this, arguments);
   }
 
   ;
   Object(react__WEBPACK_IMPORTED_MODULE_3__["useEffect"])(function () {
-    fetchData(1);
+    if (props.scrollerId != null) {
+      //scroller в самый верх, если он есть
+      document.getElementById(props.scrollerId).scrollTop = 0;
+    }
+
+    setLoadingEffectCancelled(true);
+    setDataEndReached(false);
+    document.getElementById("content").setAttribute("hidden", "");
+    document.getElementById("spinner").style.visibility = "visible";
+    setTimeout(function () {
+      //симуляция задержки отклика сервера для наглядности
+      fetchData(0);
+      document.getElementById("content").removeAttribute("hidden");
+    }, 1000);
   }, [location]);
   Object(react__WEBPACK_IMPORTED_MODULE_3__["useEffect"])(function () {
-    fetchData(page);
+    if (loadingEffectCancelled) {
+      setLoadingEffectCancelled(false);
+      setPage(0);
+      return;
+    }
+
+    if (page != 0) {
+      if (!dataEndReached) {
+        document.getElementById("spinner").style.visibility = "visible";
+      }
+
+      setTimeout(function () {
+        fetchData(page);
+      }, 1000);
+    }
   }, [page]);
   Object(react__WEBPACK_IMPORTED_MODULE_3__["useEffect"])(function () {
     var options = {
@@ -33903,10 +33953,21 @@ function InfiniteScroll(props) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
     className: "row mt-5"
-  }, postList, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
+    className: "row",
+    id: "content"
+  }, postList), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
     className: "loading",
     ref: loader
-  }));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
+    className: "d-flex justify-content-center mb-5",
+    id: "spinner"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
+    className: "spinner-border",
+    role: "status"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("span", {
+    className: "sr-only"
+  }))));
 }
 
 /***/ }),
@@ -34111,7 +34172,7 @@ function SearchAndFilterBar() {
               case 0:
                 _context.prev = 0;
                 _context.next = 3;
-                return fetch("/requests/getmedicaldirections");
+                return fetch("/requests/directions?page=-1");
 
               case 3:
                 response = _context.sent;
@@ -34144,32 +34205,19 @@ function SearchAndFilterBar() {
   }, []);
   var location = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["useLocation"])();
   var history = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["useHistory"])();
+  var searchParams = new URLSearchParams(location.search);
 
   function comboboxHandleClick(e) {
-    if (location.search.includes("directionId=")) history.push(location.pathname + location.search.replace(/(directionId)(=|=-)\d+/, "directionId=" + e.target.value));else history.push(location.pathname + (location.search == "" ? "?directionId=" : location.search + "&directionId=") + e.target.value);
+    searchParams.set("directionId", e.target.value);
+    history.push(location.pathname + "?" + searchParams.toString());
   }
 
   function searchbuttonHandleClick(e) {
     var searchData = document.getElementById("searchField").value;
-
-    if (location.search.includes("fio=")) {
-      history.push(location.pathname + location.search.replace(searchFioInURL(), "=" + searchData));
-    } else history.push(location.pathname + (location.search == "" ? "?fio=" : location.search + "&fio=") + searchData);
+    searchParams.set("fio", searchData);
+    history.push(location.pathname + "?" + searchParams.toString());
   }
 
-  function searchFioInURL() {
-    if (location.search != 0 & location.search.includes("fio=")) return location.search.match(/(fio)(.*?)(&|$)/)[2];else return null;
-  }
-
-  function getFioFromURL() {
-    if (searchFioInURL() != null) {
-      var cleaner = searchFioInURL().replace("=", "");
-      return decodeURI(cleaner);
-    } else return "";
-  }
-
-  var redirectionId = location.search.match(/(directionId)(=|=-)\d+/);
-  if (redirectionId != null) redirectionId = redirectionId[0].replace(/(directionId)(=|=-)/, "");
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
     className: "row searchandfilter"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("select", {
@@ -34181,16 +34229,15 @@ function SearchAndFilterBar() {
     value: -1
   }, "\u0412\u0441\u0435 \u043D\u0430\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0438\u044F"), items.map(function (direction) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("option", {
-      selected: redirectionId == direction.id ? "selected" : "",
-      key: direction.id,
-      id: direction.id,
-      value: direction.id
-    }, direction.name);
+      selected: searchParams.get("directionId") == direction.medicalDirectionId ? "selected" : "",
+      key: direction.medicalDirectionId,
+      value: direction.medicalDirectionId
+    }, direction.medicalDirectionName);
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
     className: "input-group mt-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("input", {
     id: "searchField",
-    defaultValue: getFioFromURL(),
+    defaultValue: searchParams.get("fio"),
     type: "text",
     className: "form-control",
     placeholder: "\u0424\u0430\u043C\u0438\u043B\u0438\u044F, \u0438\u043C\u044F, \u043E\u0442\u0447\u0435\u0441\u0442\u0432\u043E \u0432\u0440\u0430\u0447\u0430"

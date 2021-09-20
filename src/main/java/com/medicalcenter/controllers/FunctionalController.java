@@ -9,11 +9,10 @@ import com.medicalcenter.repositories.MedicalDirectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 
@@ -25,33 +24,23 @@ public class FunctionalController {
     private DoctorRepository doctorRepository;
 
 
-    @GetMapping(value = "/requests/getmedicaldirections")
-    public String getMedicalDirections() {
-        ArrayList<MedicalDirectionDTO> medicalDirectionDTOs = new ArrayList<>();
-        for (MedicalDirection buffer : medicalDirectionRepository.findAll()) {
-            medicalDirectionDTOs.add(new MedicalDirectionDTO(buffer));
+    @RequestMapping(value = "/requests/directions", method = RequestMethod.GET, produces = "application/json")
+    public List<MedicalDirectionDTO> getDirection(@RequestParam(value = "page", required = false) Integer page) {
+        Page<MedicalDirection> directions = null;
+        if (page == -1) {
+            directions = medicalDirectionRepository.findAll(Pageable.unpaged());
+        } else {
+            directions = medicalDirectionRepository.findAll(PageRequest.of(page, 9));
         }
-        return medicalDirectionDTOs.stream()
-                .map(n -> n.comboboxJSON())
-                .collect(Collectors.joining(",", "[", "]"));
+        return directions.stream()
+                .map(MedicalDirectionDTO::new)
+                .collect(Collectors.toList());
     }
 
-    @GetMapping("/requests/directions")
-    public String getDirection(@RequestParam(value = "page", required = false) Integer page) {
-        ArrayList<MedicalDirectionDTO> medicalDirectionDTOs = new ArrayList<>();
-        for (MedicalDirection buffer : medicalDirectionRepository.findAll(PageRequest.of(0, page * 12))) {
-            medicalDirectionDTOs.add(new MedicalDirectionDTO(buffer));
-        }
-        return medicalDirectionDTOs.stream()
-                .map(n -> n.directionJSON())
-                .collect(Collectors.joining(",", "[", "]"));
-    }
-
-    @GetMapping("/requests/doctors")
-    public String getDoctors(@RequestParam(value = "directionId", required = false) Integer id,
-                             @RequestParam(value = "fio", required = false) String fio,
-                             @RequestParam(value = "page", required = false) Integer page) {
-
+    @RequestMapping(value = "/requests/doctors", method = RequestMethod.GET, produces = "application/json")
+    public List<DoctorDTO> getDoctors(@RequestParam(value = "directionId", required = false) Integer id,
+                                      @RequestParam(value = "fio", required = false) String fio,
+                                      @RequestParam(value = "page", required = false) Integer page) {
         if (id == null) {
             id = -1;
         }
@@ -60,24 +49,18 @@ public class FunctionalController {
 
         if (fio != null & id != -1) {
             doctors = doctorRepository.findByNameContainingIgnoreCaseAndSpeciality_SuitableMedicalDirectionsIn(fio,
-                    medicalDirectionRepository.findById(id), PageRequest.of(0, page * 6));
+                    medicalDirectionRepository.findById(id), PageRequest.of(page, 6));
         } else if (fio != null) {
-            doctors = doctorRepository.findByNameContainingIgnoreCase(fio, PageRequest.of(0, page * 6));
+            doctors = doctorRepository.findByNameContainingIgnoreCase(fio, PageRequest.of(page, 6));
         } else if (id != -1) {
             doctors = doctorRepository.findBySpeciality_SuitableMedicalDirectionsIn(
-                    medicalDirectionRepository.findById(id), PageRequest.of(0, page * 6));
+                    medicalDirectionRepository.findById(id), PageRequest.of(page, 6));
         } else {
-            doctors = doctorRepository.findAll(PageRequest.of(0, page * 6));
+            doctors = doctorRepository.findAll(PageRequest.of(page, 6));
         }
 
-        ArrayList<DoctorDTO> doctorDTOs = new ArrayList<>();
-
-        for (Doctor buffer : doctors) {
-            doctorDTOs.add(new DoctorDTO(buffer));
-        }
-
-        return doctorDTOs.stream()
-                .map(n -> n.commonJSON())
-                .collect(Collectors.joining(",", "[", "]"));
+        return doctors.stream()
+                .map(DoctorDTO::new)
+                .collect(Collectors.toList());
     }
 }
