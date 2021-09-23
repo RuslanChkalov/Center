@@ -7,7 +7,7 @@ export function SearchAndFilterBar() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await fetch(`/requests/directions?page=-1`);
+                const response = await fetch(`/requests/directions`);
                 const json = await response.json();
                 setItems(json);
             } catch (e) {
