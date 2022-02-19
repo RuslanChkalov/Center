@@ -6,8 +6,7 @@ import {SchedulePage} from './schedulepage';
 import {
     BrowserRouter as Router,
     Switch,
-    Route,
-    Link
+    Route
 } from "react-router-dom";
 
 export default function MainRouter() {
